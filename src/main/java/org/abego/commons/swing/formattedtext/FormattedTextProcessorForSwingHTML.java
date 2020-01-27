@@ -124,8 +124,6 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
     }
 
     private void atEndAppendText(String textToAppend) {
-        endAction.push(() -> {
-            this.text.append(textToAppend);
-        });
+        endAction.push(() -> this.text.append(textToAppend));
     }
 }

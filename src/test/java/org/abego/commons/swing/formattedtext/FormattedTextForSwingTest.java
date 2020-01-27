@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class FormattedTextForSwingTest {
     @Test
     void constructor() {
-        assertThrows(MustNotInstantiateException.class, () -> new FormattedTextForSwing());
+        assertThrows(MustNotInstantiateException.class, FormattedTextForSwing::new);
     }
 
     @Test
