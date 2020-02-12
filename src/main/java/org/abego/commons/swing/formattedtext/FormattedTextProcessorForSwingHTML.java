@@ -34,7 +34,7 @@ import static org.abego.commons.lang.StringUtil.htmlEscaped;
 /**
  * see https://docs.oracle.com/javase/tutorial/uiswing/components/html.html
  */
-final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor<String> {
+final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor {
 
     private final StringBuilder text = new StringBuilder();
     private final Stack<Runnable> endAction = new Stack<>();
@@ -57,7 +57,7 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
     }
 
     @Override
-    public FormattedTextProcessor<String> beginBlock() {
+    public FormattedTextProcessor beginBlock() {
         // unsupported block types just do nothing (at begin and end)
         atEndDoNothing();
         return this;
