@@ -18,7 +18,7 @@ import java.util.function.Function;
  * configurable either individually per-side or for all side.
  */
 public class BoxModelBorder extends AbstractBorder {
-    private final Config[] configs = new Config[Side.values().length];
+    private final @Nullable Config[] configs = new @Nullable Config[Side.values().length];
 
     public enum Side {
         /**
@@ -213,16 +213,18 @@ public class BoxModelBorder extends AbstractBorder {
 
     private Config getConfig(Side side) {
         int index = side.ordinal();
-        if (configs[index] == null) {
-            configs[index] = new Config();
+        Config config = configs[index];
+		if (config == null) {
+            config = new Config();
+            configs[index] = config;
         }
-        return configs[index];
+        return config;
     }
 
-    private <T> T getConfigValueOrElse(Side side, Function<Config, T> value, T defaultValue) {
+    private <T> T getConfigValueOrElse(Side side, Function<Config, @Nullable T> value, T defaultValue) {
         Config config = configs[side.ordinal()];
         if (config != null) {
-            T v = value.apply(config);
+            @Nullable T v = value.apply(config);
             if (v != null) {
                 return v;
             }
@@ -234,7 +236,7 @@ public class BoxModelBorder extends AbstractBorder {
         if (side != Side.DEFAULT) {
             config = configs[Side.DEFAULT.ordinal()];
             if (config != null) {
-                T v = value.apply(config);
+            	@Nullable T v = value.apply(config);
                 if (v != null) {
                     return v;
                 }

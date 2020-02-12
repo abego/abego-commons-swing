@@ -20,7 +20,7 @@ public class TreePathUtil {
         for (T value : valuePath) {
             // Handle the first value (to match with root value) differently
             if (p == null) {
-                p = value.equals(root.getValue()) ? root : null;
+                p = Objects.equals(value, root.getValue()) ? root : null;
             } else {
                 p = findChildWithValue(p, value);
             }
