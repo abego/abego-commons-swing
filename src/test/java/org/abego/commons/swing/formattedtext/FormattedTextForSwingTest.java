@@ -52,7 +52,7 @@ class FormattedTextForSwingTest {
     @Test
     void asHTMLForSwing_plainText() {
 
-        FormattedText ft = builder -> builder.process("foo bar");
+        FormattedText ft = builder -> builder.text("foo bar");
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -62,7 +62,7 @@ class FormattedTextForSwingTest {
     @Test
     void asHTMLForSwing_colorBlock() {
         FormattedText ft =
-                builder -> builder.process("foo ").beginColor(Color.red).process("bar").end();
+                builder -> builder.text("foo ").beginColor(Color.red).text("bar").end();
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -72,7 +72,7 @@ class FormattedTextForSwingTest {
     @Test
     void asHTMLForSwing_boldBlock() {
         FormattedText ft =
-                builder -> builder.process("foo ").beginBold().process("bar").end();
+                builder -> builder.text("foo ").beginBold().text("bar").end();
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -82,7 +82,7 @@ class FormattedTextForSwingTest {
     @Test
     void asHTMLForSwing_italicBlock() {
         FormattedText ft =
-                builder -> builder.process("foo ").beginItalic().process("bar").end();
+                builder -> builder.text("foo ").beginItalic().text("bar").end();
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -93,9 +93,9 @@ class FormattedTextForSwingTest {
     void asHTMLForSwing_boldAnditalicBlocks() {
         FormattedText ft =
                 builder -> builder
-                        .beginBold().process("foo ")
-                        .beginItalic().process("bar").end()
-                        .process("!").end();
+                        .beginBold().text("foo ")
+                        .beginItalic().text("bar").end()
+                        .text("!").end();
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -104,7 +104,7 @@ class FormattedTextForSwingTest {
 
     @Test
     void asHTMLForSwing_missingBegin() {
-        FormattedText ft = builder -> builder.process("foo bar").end();
+        FormattedText ft = builder -> builder.text("foo bar").end();
 
 
         assertThrowsWithMessage(
@@ -115,7 +115,7 @@ class FormattedTextForSwingTest {
 
     @Test
     void asHTMLForSwing_missingEnd() {
-        FormattedText ft = builder -> builder.process("foo ").beginColor(Color.red).process("bar");
+        FormattedText ft = builder -> builder.text("foo ").beginColor(Color.red).text("bar");
 
         assertThrowsWithMessage(
                 IllegalStateException.class,

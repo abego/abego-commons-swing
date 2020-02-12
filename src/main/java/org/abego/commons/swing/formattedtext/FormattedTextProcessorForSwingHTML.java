@@ -51,7 +51,7 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
     }
 
     @Override
-    public FormattedTextProcessorForSwingHTML process(String s) {
+    public FormattedTextProcessorForSwingHTML text(String s) {
         text.append(htmlEscaped(s));
         return this;
     }
