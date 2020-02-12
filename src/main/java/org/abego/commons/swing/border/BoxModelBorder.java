@@ -17,6 +17,7 @@ import java.util.function.Function;
  * A Border inspired by the CSS Box Model, with padding, margin, border color, border width,
  * configurable either individually per-side or for all side.
  */
+@SuppressWarnings("serial")
 public class BoxModelBorder extends AbstractBorder {
     private final @Nullable Config[] configs = new @Nullable Config[Side.values().length];
 
