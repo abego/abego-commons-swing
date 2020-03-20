@@ -2,10 +2,17 @@ package org.abego.commons.swing;
 
 import org.abego.commons.lang.exception.MustNotInstantiateException;
 import org.abego.commons.range.IntRange;
+import org.abego.commons.seq.Seq;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
+import javax.swing.text.LayeredHighlighter.LayerPainter;
+
+import java.util.ArrayList;
 
 import static org.abego.commons.range.IntRangeDefault.newIntRange;
+import static org.abego.commons.seq.SeqUtil.newSeq;
 
 public final class JTextComponentUtil {
 
@@ -23,6 +30,34 @@ public final class JTextComponentUtil {
         return range.getStart() >= 0 && range.getEnd() >= 0
                 && range.getStart() < length && range.getEnd() < length;
     }
+
+    public static Object addHighlight(JTextComponent textComponent, IntRange range, LayerPainter highlightPainter) {
+        try {
+            return textComponent.getHighlighter()
+                    .addHighlight(range.getStart(), range
+                            .getEnd(), highlightPainter);
+        } catch (BadLocationException e) {
+            throw new IllegalArgumentException("Invalid range", e);
+        }
+    }
+
+    public static void removeHighlight(JTextComponent textComponent, Object highlightTag) {
+        textComponent.getHighlighter().removeHighlight(highlightTag);
+    }
+
+    public static Seq<Object> addHighlights(JTextComponent textComponent, Iterable<IntRange> ranges, LayerPainter highlightPainter) {
+        ArrayList<Object> tags = new ArrayList<>();
+        for (IntRange d : ranges) {
+            tags.add(addHighlight(textComponent, d, highlightPainter));
+        }
+        return newSeq(tags);
+    }
+
+    public static void removeHighlights(JTextComponent textComponent, Seq<Object> highlightTags) {
+        Highlighter highlighter = textComponent.getHighlighter();
+        highlightTags.forEach(highlighter::removeHighlight);
+    }
+
 
     JTextComponentUtil() {
         throw new MustNotInstantiateException();
