@@ -5,6 +5,7 @@ import org.abego.commons.range.IntRange;
 import org.abego.commons.seq.Seq;
 
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.LayeredHighlighter.LayerPainter;
@@ -29,6 +30,17 @@ public final class JTextComponentUtil {
         int length = textComponent.getText().length();
         return range.getStart() >= 0 && range.getEnd() >= 0
                 && range.getStart() < length && range.getEnd() < length;
+    }
+
+    /**
+     * Make sure text selection highlighting is painted on top of the emphasized highlight
+     */
+    public static void mustPaintTextSelectionsOnTopOfHighlights(JTextComponent textComponent) {
+        Highlighter highlighter = textComponent.getHighlighter();
+        //see https://stackoverflow.com/a/49820141)</p>
+        if (highlighter instanceof DefaultHighlighter) {
+            ((DefaultHighlighter)highlighter).setDrawsLayeredHighlights(false);
+        }
     }
 
     public static Object addHighlight(JTextComponent textComponent, IntRange range, LayerPainter highlightPainter) {
