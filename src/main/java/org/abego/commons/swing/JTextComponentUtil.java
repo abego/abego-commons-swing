@@ -3,6 +3,7 @@ package org.abego.commons.swing;
 import org.abego.commons.lang.exception.MustNotInstantiateException;
 import org.abego.commons.range.IntRange;
 import org.abego.commons.seq.Seq;
+import org.eclipse.jdt.annotation.Nullable;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -10,6 +11,7 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.LayeredHighlighter.LayerPainter;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import static org.abego.commons.range.IntRangeDefault.newIntRange;
@@ -74,4 +76,13 @@ public final class JTextComponentUtil {
     JTextComponentUtil() {
         throw new MustNotInstantiateException();
     }
+
+	@Nullable
+	public static Rectangle modelToView(JTextComponent textComponent, int index) {
+		try {
+			return textComponent.modelToView(index);
+		} catch (BadLocationException e) {
+			return null;
+		}
+	}
 }

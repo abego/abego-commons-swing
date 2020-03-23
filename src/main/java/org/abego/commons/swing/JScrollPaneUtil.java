@@ -4,7 +4,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import javax.swing.JScrollPane;
 
-public class JScrollPaneUtil {
+public final class JScrollPaneUtil {
 	
     /**
      * Set the names of {@code scrollPane} and its parts to "{@code baseName}.scrollPane",

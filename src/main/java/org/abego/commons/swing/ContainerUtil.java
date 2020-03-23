@@ -5,7 +5,7 @@ import org.abego.commons.lang.exception.MustNotInstantiateException;
 import java.awt.Component;
 import java.awt.Container;
 
-public class ContainerUtil {
+public final class ContainerUtil {
 
     public static boolean isPartOf(Component partCandidate, Container container) {
         Component c = partCandidate;
