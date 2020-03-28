@@ -85,4 +85,18 @@ public final class JTextComponentUtil {
 			return null;
 		}
 	}
+	
+	public static void scrollRangeToVisible(JTextComponent textComponent, IntRange range, int leftRightPadding, int topBottomPadding) {
+		Rectangle r1 = modelToView(textComponent, range.getStart());
+        Rectangle r2 = modelToView(textComponent, range.getEnd());
+        if (r1 == null) {
+        	r1 = r2;
+        }
+        if (r1 != null && r2 != null) {
+            Rectangle fullRangeRect = r1.union(r2);
+            fullRangeRect.grow(leftRightPadding, topBottomPadding);
+			textComponent.scrollRectToVisible(fullRangeRect);
+        }
+	}
+    
 }
