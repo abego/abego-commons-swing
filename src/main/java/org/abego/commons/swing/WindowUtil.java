@@ -7,7 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.function.Consumer;
 
-final public class WindowUtil {
+public final class WindowUtil {
 
     public static void onWindowClosed(Window window,
                                       Consumer<WindowEvent> windowClosedHandler) {
@@ -18,6 +18,14 @@ final public class WindowUtil {
                 windowClosedHandler.accept(e);
             }
         });
+    }
+
+
+    /**
+     * Center the <code>window</code> on the screen.
+     */
+    public static void centerOnScreen(Window window) {
+        window.setLocationRelativeTo(null);
     }
 
     WindowUtil() {
