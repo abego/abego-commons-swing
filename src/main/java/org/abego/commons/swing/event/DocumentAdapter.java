@@ -3,22 +3,19 @@ package org.abego.commons.swing.event;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public abstract class DocumentAdapter implements DocumentListener {
+public interface DocumentAdapter extends DocumentListener {
 
-    @Override
-    public void insertUpdate(DocumentEvent e) {
+    default void insertUpdate(DocumentEvent e) {
         someUpdate(e);
     }
 
-    @Override
-    public void removeUpdate(DocumentEvent e) {
+    default void removeUpdate(DocumentEvent e) {
         someUpdate(e);
     }
 
-    @Override
-    public void changedUpdate(DocumentEvent e) {
+    default void changedUpdate(DocumentEvent e) {
         someUpdate(e);
     }
 
-    public abstract void someUpdate(DocumentEvent e);
+    void someUpdate(DocumentEvent e);
 }
