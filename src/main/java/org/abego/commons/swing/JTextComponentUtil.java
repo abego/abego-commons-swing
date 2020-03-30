@@ -67,7 +67,7 @@ public final class JTextComponentUtil {
         return newSeq(tags);
     }
 
-    public static void removeHighlights(JTextComponent textComponent, Seq<Object> highlightTags) {
+    public static void removeHighlights(JTextComponent textComponent, Iterable<Object> highlightTags) {
         Highlighter highlighter = textComponent.getHighlighter();
         highlightTags.forEach(highlighter::removeHighlight);
     }
