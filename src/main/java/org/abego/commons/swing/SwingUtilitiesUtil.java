@@ -26,7 +26,6 @@ public final class SwingUtilitiesUtil {
             runnable.run();
         } else {
             try {
-                //TODO: why invokeAndWait here? shouldn't this run async
                 invokeAndWait(runnable);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
