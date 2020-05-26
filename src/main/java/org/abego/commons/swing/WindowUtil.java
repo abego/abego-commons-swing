@@ -9,6 +9,10 @@ import java.util.function.Consumer;
 
 public final class WindowUtil {
 
+    WindowUtil() {
+        throw new MustNotInstantiateException();
+    }
+
     public static void onWindowClosed(Window window,
                                       Consumer<WindowEvent> windowClosedHandler) {
 
@@ -20,15 +24,10 @@ public final class WindowUtil {
         });
     }
 
-
     /**
      * Center the <code>window</code> on the screen.
      */
     public static void centerOnScreen(Window window) {
         window.setLocationRelativeTo(null);
-    }
-
-    WindowUtil() {
-        throw new MustNotInstantiateException();
     }
 }

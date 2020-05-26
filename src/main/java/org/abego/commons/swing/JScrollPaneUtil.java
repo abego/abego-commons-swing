@@ -5,7 +5,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import javax.swing.JScrollPane;
 
 public final class JScrollPaneUtil {
-	
+
     /**
      * Set the names of {@code scrollPane} and its parts to "{@code baseName}.scrollPane",
      * "{@code baseName}.viewport", "{@code baseName}.horizontalScrollBar", "{@code baseName}
@@ -15,12 +15,14 @@ public final class JScrollPaneUtil {
                                                             String baseName) {
         scrollPane.setName(baseName + ".scrollPane");
         scrollPane.getViewport().setName(baseName + ".viewport");
-        scrollPane.getHorizontalScrollBar().setName(baseName + ".horizontalScrollBar");
-        scrollPane.getVerticalScrollBar().setName(baseName + ".verticalScrollBar");
-        
+        scrollPane.getHorizontalScrollBar()
+                .setName(baseName + ".horizontalScrollBar");
+        scrollPane.getVerticalScrollBar()
+                .setName(baseName + ".verticalScrollBar");
+
         return scrollPane;
     }
-    
+
     /**
      * Set the names of {@code scrollPane} and its parts to "{@code baseName}.scrollPane",
      * "{@code baseName}.viewport", "{@code baseName}.horizontalScrollBar", "{@code baseName}
@@ -29,10 +31,11 @@ public final class JScrollPaneUtil {
      * <p>When {@code scrollPane} is {@code null} just return {@code null}.</p>
      */
     @Nullable
-    public static <T extends JScrollPane> T withAllNamesSetIfNonNull(@Nullable T scrollPane,
-                                                            String baseName) {
+    public static <T extends JScrollPane> T withAllNamesSetIfNonNull(
+            @Nullable T scrollPane,
+            String baseName) {
         if (scrollPane != null) {
-        	withAllNamesSet(scrollPane,baseName);
+            withAllNamesSet(scrollPane, baseName);
         }
         return scrollPane;
     }

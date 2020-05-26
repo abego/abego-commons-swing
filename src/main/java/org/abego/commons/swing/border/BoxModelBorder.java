@@ -19,7 +19,8 @@ import java.util.function.Function;
  */
 @SuppressWarnings("serial")
 public class BoxModelBorder extends AbstractBorder {
-    private final @Nullable Config[] configs = new @Nullable Config[Side.values().length];
+    private final @Nullable Config[] configs = new @Nullable Config[Side
+            .values().length];
 
     public enum Side {
         /**
@@ -53,6 +54,19 @@ public class BoxModelBorder extends AbstractBorder {
         }
     }
 
+    @ConstructorProperties({"borderWidth", "borderColor", "padding", "margin"})
+    private BoxModelBorder(@Nullable Integer borderWidth,
+                           @Nullable Color borderColor,
+                           @Nullable Integer padding,
+                           @Nullable Integer margin) {
+        configs[Side.DEFAULT
+                .ordinal()] = new Config(borderWidth, borderColor, padding, margin);
+    }
+
+    private BoxModelBorder() {
+        this(null, Color.BLACK, null, null);
+    }
+
     public static BoxModelBorder newBoxModelBorder() {
         return new BoxModelBorder();
     }
@@ -70,18 +84,6 @@ public class BoxModelBorder extends AbstractBorder {
                                                    @Nullable Integer padding,
                                                    @Nullable Integer margin) {
         return new BoxModelBorder(borderWidth, borderColor, padding, margin);
-    }
-
-    @ConstructorProperties({"borderWidth", "borderColor", "padding", "margin"})
-    private BoxModelBorder(@Nullable Integer borderWidth,
-                           @Nullable Color borderColor,
-                           @Nullable Integer padding,
-                           @Nullable Integer margin) {
-        configs[Side.DEFAULT.ordinal()] = new Config(borderWidth, borderColor, padding, margin);
-    }
-
-    private BoxModelBorder() {
-        this(null, Color.BLACK, null, null);
     }
 
     /**
@@ -104,11 +106,11 @@ public class BoxModelBorder extends AbstractBorder {
 
         drawVLine(g2d, Side.LEFT, x + getMargin(Side.LEFT), y, height);
         drawVLine(g2d, Side.RIGHT, x + width - getMargin(Side.RIGHT) - getBorderWidth(Side.RIGHT),
-                  y,
-                  height);
+                y,
+                height);
         drawHLine(g2d, Side.TOP, x, y + getMargin(Side.TOP), width);
         drawHLine(g2d, Side.BOTTOM, x,
-                  y + height - getMargin(Side.BOTTOM) - getBorderWidth(Side.BOTTOM), width);
+                y + height - getMargin(Side.BOTTOM) - getBorderWidth(Side.BOTTOM), width);
     }
 
     /**
@@ -119,9 +121,9 @@ public class BoxModelBorder extends AbstractBorder {
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         insets.set(calcInset(Side.TOP),
-                   calcInset(Side.LEFT),
-                   calcInset(Side.BOTTOM),
-                   calcInset(Side.RIGHT));
+                calcInset(Side.LEFT),
+                calcInset(Side.BOTTOM),
+                calcInset(Side.RIGHT));
         return insets;
     }
 
@@ -130,7 +132,8 @@ public class BoxModelBorder extends AbstractBorder {
                                    @Nullable Color borderColor,
                                    @Nullable Integer padding,
                                    @Nullable Integer margin) {
-        configs[side.ordinal()] = new Config(borderWidth, borderColor, padding, margin);
+        configs[side.ordinal()] =
+                new Config(borderWidth, borderColor, padding, margin);
         return this;
     }
 
@@ -215,7 +218,7 @@ public class BoxModelBorder extends AbstractBorder {
     private Config getConfig(Side side) {
         int index = side.ordinal();
         Config config = configs[index];
-		if (config == null) {
+        if (config == null) {
             config = new Config();
             configs[index] = config;
         }
@@ -237,7 +240,7 @@ public class BoxModelBorder extends AbstractBorder {
         if (side != Side.DEFAULT) {
             config = configs[Side.DEFAULT.ordinal()];
             if (config != null) {
-            	@Nullable T v = value.apply(config);
+                @Nullable T v = value.apply(config);
                 if (v != null) {
                     return v;
                 }

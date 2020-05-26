@@ -28,15 +28,15 @@ import org.abego.commons.formattedtext.FormattedText;
 import org.abego.commons.lang.exception.MustNotInstantiateException;
 
 public final class FormattedTextForSwing {
+    FormattedTextForSwing() {
+        throw new MustNotInstantiateException();
+    }
+
     public static String toHTMLForSwing(FormattedText formattedText) {
         FormattedTextProcessorForSwingHTML builder = FormattedTextProcessorForSwingHTML
                 .newFormattedTextRendererForSwing();
         formattedText.processWith(builder);
         return builder.build();
-    }
-
-    FormattedTextForSwing() {
-        throw new MustNotInstantiateException();
     }
 
 }

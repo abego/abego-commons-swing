@@ -8,7 +8,7 @@ import java.awt.Component;
 public class JListUtil {
 
     private static final String SELECTED_ITEM_SUFFIX = " (selected)"; //NON-NLS
-    
+
     public static <T> String toDebugString(JList<T> list) {
         StringBuilder result = new StringBuilder();
         int n = list.getModel().getSize();
@@ -17,8 +17,10 @@ public class JListUtil {
             boolean isSelected = list.getSelectionModel().isSelectedIndex(i);
             ListCellRenderer<? super T> r = list.getCellRenderer();
             T item = list.getModel().getElementAt(i);
-            Component c = r.getListCellRendererComponent(list, item, i, isSelected, false);
-            String text = (c instanceof JLabel) ? ((JLabel) c).getText() : String.valueOf(item);
+            Component c = r.getListCellRendererComponent(
+                    list, item, i, isSelected, false);
+            String text = (c instanceof JLabel) 
+                    ? ((JLabel) c).getText() : String.valueOf(item);
             result.append(text);
             if (isSelected) {
                 result.append(SELECTED_ITEM_SUFFIX);

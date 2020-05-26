@@ -10,7 +10,6 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.LayeredHighlighter.LayerPainter;
-
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -19,8 +18,14 @@ import static org.abego.commons.seq.SeqUtil.newSeq;
 
 public final class JTextComponentUtil {
 
+    JTextComponentUtil() {
+        throw new MustNotInstantiateException();
+    }
+
     public static IntRange getSelectedRange(JTextComponent textComponent) {
-        return newIntRange(textComponent.getSelectionStart(), textComponent.getSelectionEnd());
+        return newIntRange(
+                textComponent.getSelectionStart(), 
+                textComponent.getSelectionEnd());
     }
 
     public static void setSelectedRange(JTextComponent textComponent, IntRange range) {
@@ -41,7 +46,7 @@ public final class JTextComponentUtil {
         Highlighter highlighter = textComponent.getHighlighter();
         //see https://stackoverflow.com/a/49820141)</p>
         if (highlighter instanceof DefaultHighlighter) {
-            ((DefaultHighlighter)highlighter).setDrawsLayeredHighlights(false);
+            ((DefaultHighlighter) highlighter).setDrawsLayeredHighlights(false);
         }
     }
 
@@ -72,31 +77,26 @@ public final class JTextComponentUtil {
         highlightTags.forEach(highlighter::removeHighlight);
     }
 
-
-    JTextComponentUtil() {
-        throw new MustNotInstantiateException();
+    @Nullable
+    public static Rectangle modelToView(JTextComponent textComponent, int index) {
+        try {
+            return textComponent.modelToView(index);
+        } catch (BadLocationException e) {
+            return null;
+        }
     }
 
-	@Nullable
-	public static Rectangle modelToView(JTextComponent textComponent, int index) {
-		try {
-			return textComponent.modelToView(index);
-		} catch (BadLocationException e) {
-			return null;
-		}
-	}
-	
-	public static void scrollRangeToVisible(JTextComponent textComponent, IntRange range, int leftRightPadding, int topBottomPadding) {
-		Rectangle r1 = modelToView(textComponent, range.getStart());
+    public static void scrollRangeToVisible(JTextComponent textComponent, IntRange range, int leftRightPadding, int topBottomPadding) {
+        Rectangle r1 = modelToView(textComponent, range.getStart());
         Rectangle r2 = modelToView(textComponent, range.getEnd());
         if (r1 == null) {
-        	r1 = r2;
+            r1 = r2;
         }
         if (r1 != null && r2 != null) {
             Rectangle fullRangeRect = r1.union(r2);
             fullRangeRect.grow(leftRightPadding, topBottomPadding);
-			textComponent.scrollRectToVisible(fullRangeRect);
+            textComponent.scrollRectToVisible(fullRangeRect);
         }
-	}
-    
+    }
+
 }

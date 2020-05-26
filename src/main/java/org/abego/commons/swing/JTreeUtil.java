@@ -1,19 +1,23 @@
 package org.abego.commons.swing;
 
-import java.awt.Rectangle;
-import java.util.EnumSet;
+import org.abego.commons.lang.StringUtil;
+import org.eclipse.jdt.annotation.NonNull;
 
 import javax.swing.JTree;
 import javax.swing.JViewport;
 import javax.swing.tree.TreePath;
-
-import org.abego.commons.lang.StringUtil;
-import org.eclipse.jdt.annotation.NonNull;
+import java.awt.Rectangle;
+import java.util.EnumSet;
 
 public class JTreeUtil {
     private static final String HIDDEN_ITEM_SUFFIX = " (hidden)"; //NON-NLS
     private static final String SELECTED_ITEM_SUFFIX = " (selected)"; //NON-NLS
-    
+
+    public enum JTreeDebugStringFlag {
+        MARK_SELECTED_ITEM,
+        MARK_HIDDEN_ITEM,
+    }
+
     public static String toDebugString(JTree jTree) {
         return toDebugString(jTree, EnumSet.noneOf(JTreeDebugStringFlag.class));
     }
@@ -36,20 +40,17 @@ public class JTreeUtil {
                     jTree.isExpanded(path),
                     true, i, true);
             result.append(t);
-            if (jTree.isPathSelected(path) && flags.contains(JTreeDebugStringFlag.MARK_SELECTED_ITEM)) {
+            if (jTree.isPathSelected(path) && 
+                    flags.contains(JTreeDebugStringFlag.MARK_SELECTED_ITEM)) {
                 result.append(SELECTED_ITEM_SUFFIX);
             }
-            if (!isInViewport(jTree, path) && flags.contains(JTreeDebugStringFlag.MARK_HIDDEN_ITEM)) {
+            if (!isInViewport(jTree, path) && 
+                    flags.contains(JTreeDebugStringFlag.MARK_HIDDEN_ITEM)) {
                 result.append(HIDDEN_ITEM_SUFFIX);
             }
             result.append("\n");
         }
         return result.toString();
-    }
-
-    public enum JTreeDebugStringFlag {
-        MARK_SELECTED_ITEM,
-        MARK_HIDDEN_ITEM,
     }
 
     private static boolean isInViewport(JTree jTree, TreePath path) {

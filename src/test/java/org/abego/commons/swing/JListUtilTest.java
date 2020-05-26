@@ -24,7 +24,6 @@
 
 package org.abego.commons.swing;
 
-import org.abego.commons.swing.JListUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

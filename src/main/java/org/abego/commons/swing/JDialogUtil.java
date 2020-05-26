@@ -1,18 +1,21 @@
 package org.abego.commons.swing;
 
-import java.awt.Component;
-import java.awt.event.KeyEvent;
+import org.abego.commons.lang.exception.MustNotInstantiateException;
+import org.eclipse.jdt.annotation.Nullable;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
-
-import org.abego.commons.lang.exception.MustNotInstantiateException;
-import org.eclipse.jdt.annotation.Nullable;
+import java.awt.Component;
+import java.awt.event.KeyEvent;
 
 public final class JDialogUtil {
-	
-   public static void showInDialog(@Nullable String title, Component component) {
+
+    JDialogUtil() {
+        throw new MustNotInstantiateException();
+    }
+
+    public static void showInDialog(@Nullable String title, Component component) {
         final JDialog dlg = new JDialog();
         dlg.setModal(true);
 
@@ -30,7 +33,6 @@ public final class JDialogUtil {
         dlg.dispose();
     }
 
-
     /**
      * Make sure pressing the escape key closes/disposes the dialog
      */
@@ -39,10 +41,6 @@ public final class JDialogUtil {
                 e -> dialog.dispose(),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
-    }
-
-    JDialogUtil() {
-        throw new MustNotInstantiateException();
     }
 
 }

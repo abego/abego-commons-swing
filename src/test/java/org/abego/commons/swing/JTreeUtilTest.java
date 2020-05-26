@@ -24,8 +24,6 @@
 
 package org.abego.commons.swing;
 
-import org.abego.commons.swing.JFrameUtil;
-import org.abego.commons.swing.JTreeUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +32,6 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-
 import java.awt.Dimension;
 import java.awt.Point;
 
@@ -76,7 +73,7 @@ class JTreeUtilTest {
                 debugString);
     }
 
-	@Test
+    @Test
     void toDebugString_MARK_SELECTED_ITEM_ok() {
         DefaultTreeModel model = new DefaultTreeModel(newTreeNodeSample());
         JTree tree = new JTree(model);
@@ -103,7 +100,9 @@ class JTreeUtilTest {
         tree.setSelectionRow(2);
         tree.expandRow(1);
         // Make the window less tall so the last node is hidden
-        JFrameUtil.showInFrame(new JScrollPane(tree), new Point(50,50),new Dimension(200,90));
+        JFrameUtil.showInFrame(
+                new JScrollPane(tree), 
+                new Point(50, 50), new Dimension(200, 90));
 
         String debugString = JTreeUtil.toDebugString(tree, MARK_HIDDEN_ITEM);
 

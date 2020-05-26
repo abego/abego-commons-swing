@@ -43,11 +43,11 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
     private int italicLevel = 0;
 
 
-    public static FormattedTextProcessorForSwingHTML newFormattedTextRendererForSwing() {
-        return new FormattedTextProcessorForSwingHTML();
+    private FormattedTextProcessorForSwingHTML() {
     }
 
-    private FormattedTextProcessorForSwingHTML() {
+    public static FormattedTextProcessorForSwingHTML newFormattedTextRendererForSwing() {
+        return new FormattedTextProcessorForSwingHTML();
     }
 
     @Override
@@ -68,7 +68,7 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
         isFormatted = true;
 
         text.append(String.format("<font color=\"#%02x%02x%02x\">",
-                                  color.getRed(), color.getGreen(), color.getBlue()));
+                color.getRed(), color.getGreen(), color.getBlue()));
         atEndAppendText("</font>");
         return this;
     }
@@ -116,7 +116,8 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
         if (!endAction.empty()) {
             throw new IllegalStateException("Missing end. begin and end must be balanced.");
         }
-        return isFormatted ? "<html>" + text.toString() + "</html>" : text.toString();
+        return isFormatted 
+                ? "<html>" + text.toString() + "</html>" : text.toString();
     }
 
     private void atEndDoNothing() {

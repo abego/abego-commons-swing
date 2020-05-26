@@ -7,6 +7,10 @@ import java.awt.Container;
 
 public final class ContainerUtil {
 
+    ContainerUtil() {
+        throw new MustNotInstantiateException();
+    }
+
     public static boolean isPartOf(Component partCandidate, Container container) {
         Component c = partCandidate;
         while (c != null) {
@@ -16,10 +20,6 @@ public final class ContainerUtil {
             c = c.getParent();
         }
         return false;
-    }
-
-    ContainerUtil() {
-        throw new MustNotInstantiateException();
     }
 
 

@@ -7,13 +7,13 @@ import javax.swing.JComponent;
 
 final public class JComponentUtil {
 
+    JComponentUtil() {
+        throw new MustNotInstantiateException();
+    }
+
     public static void clearBorder(@Nullable JComponent component) {
         if (component != null) {
             component.setBorder(null);
         }
-    }
-
-    JComponentUtil() {
-        throw new MustNotInstantiateException();
     }
 }

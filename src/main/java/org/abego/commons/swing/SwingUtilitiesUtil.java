@@ -3,6 +3,7 @@ package org.abego.commons.swing;
 import org.abego.commons.lang.exception.MustNotInstantiateException;
 import org.abego.commons.var.Var;
 import org.abego.commons.var.VarUtil;
+import org.eclipse.jdt.annotation.NonNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Supplier;
@@ -13,6 +14,10 @@ import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.abego.commons.lang.exception.UncheckedException.newUncheckedException;
 
 public final class SwingUtilitiesUtil {
+
+    SwingUtilitiesUtil() {
+        throw new MustNotInstantiateException();
+    }
 
     /**
      * Run the runnable in the Event Dispatch Thread.
@@ -56,7 +61,7 @@ public final class SwingUtilitiesUtil {
      *
      * <p>The method may also be called from the Event Dispatch Thread.</p>
      */
-    public static <T> T evalInEDT(Supplier<T> expression) {
+    public static <T> T evalInEDT(Supplier<@NonNull T> expression) {
         if (isEventDispatchThread()) {
             return expression.get();
         }
@@ -71,10 +76,6 @@ public final class SwingUtilitiesUtil {
             throw newUncheckedException("Error in evalInEDT", e); // NON-NLS
         }
         return result.get();
-    }
-
-    SwingUtilitiesUtil() {
-        throw new MustNotInstantiateException();
     }
 
 }

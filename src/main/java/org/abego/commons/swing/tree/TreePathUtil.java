@@ -15,13 +15,13 @@ public class TreePathUtil {
     @Nullable
     public static <T> TreePath treePathForValuePath(
             @Nullable TreeNode<T> root, Iterable<T> valuePath) {
-    	if (root == null) {
-    		if (!IterableUtil.isEmpty(valuePath)) {
-    			throw new IllegalArgumentException("valuePath defined, but root is null");
-    		}
-    		return null;
-    	}
-    	
+        if (root == null) {
+            if (!IterableUtil.isEmpty(valuePath)) {
+                throw new IllegalArgumentException("valuePath defined, but root is null");
+            }
+            return null;
+        }
+
         TreeNode<T> p = null;
 
         List<TreeNode<T>> path = new ArrayList<>();

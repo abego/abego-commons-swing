@@ -28,7 +28,7 @@ import org.abego.commons.formattedtext.FormattedText;
 import org.abego.commons.lang.exception.MustNotInstantiateException;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import java.awt.Color;
 
 import static org.abego.commons.test.JUnit5Util.assertThrowsWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -62,7 +62,9 @@ class FormattedTextForSwingTest {
     @Test
     void asHTMLForSwing_colorBlock() {
         FormattedText ft =
-                builder -> builder.text("foo ").beginColor(Color.red).text("bar").end();
+                builder -> builder.text("foo ")
+                        .beginColor(Color.red)
+                        .text("bar").end();
 
         String html = FormattedTextForSwing.toHTMLForSwing(ft);
 
@@ -115,7 +117,9 @@ class FormattedTextForSwingTest {
 
     @Test
     void asHTMLForSwing_missingEnd() {
-        FormattedText ft = builder -> builder.text("foo ").beginColor(Color.red).text("bar");
+        FormattedText ft = builder -> builder.text("foo ")
+                .beginColor(Color.red)
+                .text("bar");
 
         assertThrowsWithMessage(
                 IllegalStateException.class,
