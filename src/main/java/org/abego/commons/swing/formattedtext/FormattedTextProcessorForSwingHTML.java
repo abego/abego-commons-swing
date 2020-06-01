@@ -29,7 +29,7 @@ import org.abego.commons.formattedtext.FormattedTextProcessor;
 import java.awt.Color;
 import java.util.Stack;
 
-import static org.abego.commons.lang.StringUtil.htmlEscaped;
+import static org.abego.commons.lang.StringUtil.toHtml;
 
 /**
  * see https://docs.oracle.com/javase/tutorial/uiswing/components/html.html
@@ -52,7 +52,7 @@ final class FormattedTextProcessorForSwingHTML implements FormattedTextProcessor
 
     @Override
     public FormattedTextProcessorForSwingHTML text(String s) {
-        text.append(htmlEscaped(s));
+        text.append(toHtml(s));
         return this;
     }
 
