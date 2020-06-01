@@ -7,19 +7,7 @@ import javax.swing.JScrollPane;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JScrollPaneUtilTest {
-
-    @Test
-    void withAllNamesSet() {
-        JScrollPane scrollPane = new JScrollPane();
-
-        JScrollPaneUtil.withAllNamesSet(scrollPane, "mySP");
-
-        assertEquals("mySP", scrollPane.getName());
-        assertEquals("mySP.verticalScrollBar", scrollPane.getVerticalScrollBar().getName());
-        assertEquals("mySP.horizontalScrollBar", scrollPane.getHorizontalScrollBar().getName());
-        assertEquals("mySP.viewport", scrollPane.getViewport().getName());
-    }
-
+    
     @Test
     void withAllNamesSetIfNonNull() {
 
