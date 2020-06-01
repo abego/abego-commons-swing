@@ -7,9 +7,10 @@ import javax.swing.JScrollPane;
 public final class JScrollPaneUtil {
 
     /**
-     * Set the names of {@code scrollPane} and its parts to "{@code baseName}.scrollPane",
-     * "{@code baseName}.viewport", "{@code baseName}.horizontalScrollBar", "{@code baseName}
-     * .verticalScrollBar" and return {@code scrollPane}.
+     * Sets the names of {@code scrollPane} and its parts to 
+     * "{@code baseName}.scrollPane", "{@code baseName}.viewport", 
+     * "{@code baseName}.horizontalScrollBar", 
+     * "{@code baseName}.verticalScrollBar" and returns {@code scrollPane}.
      */
     public static <T extends JScrollPane> T withAllNamesSet(T scrollPane,
                                                             String baseName) {

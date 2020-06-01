@@ -2,6 +2,7 @@ package org.abego.commons.swing;
 
 import org.abego.commons.lang.StringUtil;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import javax.swing.JTree;
 import javax.swing.JViewport;
@@ -54,7 +55,7 @@ public class JTreeUtil {
     }
 
     private static boolean isInViewport(JTree jTree, TreePath path) {
-        Rectangle nodeRect = jTree.getPathBounds(path);
+        @Nullable Rectangle nodeRect = jTree.getPathBounds(path);
         if (nodeRect == null || (!(jTree.getParent() instanceof JViewport))) {
             return false;
         }

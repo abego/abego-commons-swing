@@ -22,7 +22,7 @@ public class TreePathUtil {
             return null;
         }
 
-        TreeNode<T> p = null;
+        @Nullable TreeNode<T> p = null;
 
         List<TreeNode<T>> path = new ArrayList<>();
         for (T value : valuePath) {

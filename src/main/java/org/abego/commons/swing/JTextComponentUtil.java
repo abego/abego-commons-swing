@@ -87,8 +87,8 @@ public final class JTextComponentUtil {
     }
 
     public static void scrollRangeToVisible(JTextComponent textComponent, IntRange range, int leftRightPadding, int topBottomPadding) {
-        Rectangle r1 = modelToView(textComponent, range.getStart());
-        Rectangle r2 = modelToView(textComponent, range.getEnd());
+        @Nullable Rectangle r1 = modelToView(textComponent, range.getStart());
+        @Nullable Rectangle r2 = modelToView(textComponent, range.getEnd());
         if (r1 == null) {
             r1 = r2;
         }

@@ -92,7 +92,7 @@ class FormattedTextForSwingTest {
     }
 
     @Test
-    void asHTMLForSwing_boldAnditalicBlocks() {
+    void asHTMLForSwing_boldAndItalicBlocks() {
         FormattedText ft =
                 builder -> builder
                         .beginBold().text("foo ")

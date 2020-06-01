@@ -217,7 +217,7 @@ public class BoxModelBorder extends AbstractBorder {
 
     private Config getConfig(Side side) {
         int index = side.ordinal();
-        Config config = configs[index];
+        @Nullable Config config = configs[index];
         if (config == null) {
             config = new Config();
             configs[index] = config;
@@ -226,7 +226,7 @@ public class BoxModelBorder extends AbstractBorder {
     }
 
     private <T> T getConfigValueOrElse(Side side, Function<Config, @Nullable T> value, T defaultValue) {
-        Config config = configs[side.ordinal()];
+        @Nullable Config config = configs[side.ordinal()];
         if (config != null) {
             @Nullable T v = value.apply(config);
             if (v != null) {
