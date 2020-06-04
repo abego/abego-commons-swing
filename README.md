@@ -30,4 +30,4 @@ You may check out the source code from the [GitHub repository](https://github.co
 
 ## License
 
-abego Commons is available under a business friendly [MIT license](https://www.abego-software.de/legal/mit-license.html).
+abego Commons Swing is available under a business friendly [MIT license](https://www.abego-software.de/legal/mit-license.html).
