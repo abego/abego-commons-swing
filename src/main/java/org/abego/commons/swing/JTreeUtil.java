@@ -34,20 +34,24 @@ public class JTreeUtil {
         int n = jTree.getRowCount();
         for (int i = 0; i < n; i++) {
             TreePath path = jTree.getPathForRow(i);
-            result.append(StringUtil.repeat("  ", path.getPathCount() - 1));
-            String t = jTree.convertValueToText(
-                    path.getLastPathComponent(),
-                    jTree.isPathSelected(path),
-                    jTree.isExpanded(path),
-                    true, i, true);
-            result.append(t);
-            if (jTree.isPathSelected(path) && 
-                    flags.contains(JTreeDebugStringFlag.MARK_SELECTED_ITEM)) {
-                result.append(SELECTED_ITEM_SUFFIX);
-            }
-            if (!isInViewport(jTree, path) && 
-                    flags.contains(JTreeDebugStringFlag.MARK_HIDDEN_ITEM)) {
-                result.append(HIDDEN_ITEM_SUFFIX);
+            if (path == null) {
+                result.append("<invisible row>");
+            } else {
+                result.append(StringUtil.repeat("  ", path.getPathCount() - 1));
+                String t = jTree.convertValueToText(
+                        path.getLastPathComponent(),
+                        jTree.isPathSelected(path),
+                        jTree.isExpanded(path),
+                        true, i, true);
+                result.append(t);
+                if (jTree.isPathSelected(path) &&
+                        flags.contains(JTreeDebugStringFlag.MARK_SELECTED_ITEM)) {
+                    result.append(SELECTED_ITEM_SUFFIX);
+                }
+                if (!isInViewport(jTree, path) &&
+                        flags.contains(JTreeDebugStringFlag.MARK_HIDDEN_ITEM)) {
+                    result.append(HIDDEN_ITEM_SUFFIX);
+                }
             }
             result.append("\n");
         }
