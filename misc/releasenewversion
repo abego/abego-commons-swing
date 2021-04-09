@@ -127,7 +127,7 @@ echo "Automatic part of releasing ${version} completed."
 
 # --- get the path to the local Maven repository --------------------------
 m2repoDir=`mvn help:evaluate -Dexpression=settings.localRepository | grep -E '^([a-zA-Z]:|/)'`
-m2releaseDir="${m2repoDir}/org/abego/abego-commons-swing/${version}/"
+m2releaseDir="${m2repoDir}/org/abego/commons/abego-commons-swing/${version}/"
 
 echo
 echo "    Remaining manual steps:"
