@@ -1,6 +1,7 @@
 package org.abego.commons.swing.tree;
 
 import org.abego.commons.lang.IterableUtil;
+import org.abego.commons.lang.exception.MustNotInstantiateException;
 import org.abego.commons.seq.Seq;
 import org.abego.commons.tree.TreeNode;
 import org.eclipse.jdt.annotation.Nullable;
@@ -10,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class TreePathUtil {
+public final class TreePathUtil {
 
+    TreePathUtil() {
+        throw new MustNotInstantiateException();
+    }
+    
     @Nullable
     public static <T> TreePath treePathForValuePath(
             @Nullable TreeNode<T> root, Iterable<T> valuePath) {
