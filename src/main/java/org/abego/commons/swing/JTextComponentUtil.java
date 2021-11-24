@@ -36,7 +36,7 @@ public final class JTextComponentUtil {
     public static boolean isValidSelection(JTextComponent textComponent, IntRange range) {
         int length = textComponent.getText().length();
         return range.getStart() >= 0 && range.getEnd() >= 0
-                && range.getStart() < length && range.getEnd() < length;
+                && range.getStart() <= length && range.getEnd() <= length;
     }
 
     /**
