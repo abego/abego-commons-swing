@@ -43,10 +43,16 @@ public final class KeyStrokeUtil {
             acceleratorText = KeyEvent.getModifiersExText(modifiers);
             if (!isMacOS()) {
                 acceleratorText += "+";
+            } else if (endsWithLetter(acceleratorText)) {
+                acceleratorText += " ";
             }
         }
         acceleratorText += KeyEvent.getKeyText(keyStroke.getKeyCode());
         return acceleratorText;
+    }
+
+    private static boolean endsWithLetter(String text) {
+        return !text.isEmpty() && Character.isLetter(text.charAt(text.length() - 1));
     }
 
 
