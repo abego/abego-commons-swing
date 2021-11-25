@@ -1,8 +1,6 @@
 package org.abego.commons.swing;
 
-import org.abego.commons.io.FileUtil;
 import org.abego.commons.lang.exception.MustNotInstantiateException;
-import org.abego.commons.net.URLUtil;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.ImageIcon;
@@ -11,13 +9,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.abego.commons.io.FileUtil.toFile;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.abego.commons.test.JUnit5Util.assertThrowsWithMessage;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ImageIconUtilTest {
 
     @Test
     void constructor() {
-        assertThrows(MustNotInstantiateException.class,ImageIconUtil::new);
+        assertThrows(MustNotInstantiateException.class, ImageIconUtil::new);
     }
 
 
@@ -33,17 +33,17 @@ class ImageIconUtilTest {
     @Test
     void iconFromResource_OK() {
         ImageIcon icon =
-                ImageIconUtil.iconFromResource("ignore.png",getClass());
+                ImageIconUtil.iconFromResource("ignore.png", getClass());
 
         assertNotNull(icon);
     }
 
     @Test
     void iconFromResource_missing() {
-        ImageIcon icon =
-                ImageIconUtil.iconFromResource("foo",getClass());
-
-        assertNotNull(icon);
+        assertThrowsWithMessage(
+                IllegalArgumentException.class,
+                "ImageIcon not found: foo. Looking in class org.abego.commons.swing.ImageIconUtilTest",
+                () -> ImageIconUtil.iconFromResource("foo", getClass()));
     }
 
     @Test
