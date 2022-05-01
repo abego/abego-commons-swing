@@ -40,7 +40,7 @@ final class ActionWithEventHandler extends AbstractAction {
 
     private ActionWithEventHandler(
             String text,
-            KeyStroke accelerator,
+            @Nullable KeyStroke accelerator,
             @Nullable String description,
             @Nullable Icon smallIcon,
             Consumer<ActionEvent> eventHandler) {
@@ -58,7 +58,7 @@ final class ActionWithEventHandler extends AbstractAction {
 
     public static Action newAction(
             String text,
-            KeyStroke accelerator,
+            @Nullable KeyStroke accelerator,
             @Nullable String description,
             @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {

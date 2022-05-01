@@ -1,6 +1,7 @@
 package org.abego.commons.swing;
 
 import org.abego.commons.lang.exception.MustNotInstantiateException;
+import org.eclipse.jdt.annotation.Nullable;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -15,24 +16,24 @@ public class ActionUtil {
 
     public static Action newAction(
             String text,
-            KeyStroke accelerator,
-            String description,
-            ImageIcon smallIcon,
+            @Nullable KeyStroke accelerator,
+            @Nullable String description,
+            @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
                 text, accelerator, description, smallIcon, action);
     }
 
     public static Action newAction(
-            String text, KeyStroke accelerator, Consumer<ActionEvent> action) {
+            String text, @Nullable KeyStroke accelerator, Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
                 text, accelerator, text, null, action);
     }
 
     public static Action newAction(
             String text,
-            KeyStroke accelerator,
-            ImageIcon smallIcon,
+            @Nullable KeyStroke accelerator,
+            @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
                 text, accelerator, text, smallIcon, action);
@@ -40,8 +41,8 @@ public class ActionUtil {
 
     public static Action newAction(
             String text,
-            KeyStroke accelerator,
-            String description,
+            @Nullable KeyStroke accelerator,
+            @Nullable String description,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
                 text, accelerator, description, null, action);
