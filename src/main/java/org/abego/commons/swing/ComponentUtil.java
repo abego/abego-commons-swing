@@ -19,15 +19,11 @@ public final class ComponentUtil {
     }
 
     public static Window findWindow(@Nullable Component component) {
-        if (component == null) {
-            return JOptionPane.getRootFrame();
-        }
-
         Component result = component;
-        while (!(result instanceof Window)) {
+        while (result != null && !(result instanceof Window)) {
             result = result.getParent();
         }
 
-        return (Window) result;
+        return result != null ? (Window) result : JOptionPane.getRootFrame();
     }
 }
