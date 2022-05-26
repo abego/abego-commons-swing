@@ -15,37 +15,37 @@ public class ActionUtil {
     }
 
     public static Action newAction(
-            String text,
+            String name,
             @Nullable KeyStroke accelerator,
             @Nullable String description,
             @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
-                text, accelerator, description, smallIcon, action);
+                name, accelerator, description, smallIcon, action);
     }
 
     public static Action newAction(
-            String text, @Nullable KeyStroke accelerator, Consumer<ActionEvent> action) {
+            String name, @Nullable KeyStroke accelerator, Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
-                text, accelerator, text, null, action);
+                name, accelerator, name, null, action);
     }
 
     public static Action newAction(
-            String text,
+            String name,
             @Nullable KeyStroke accelerator,
             @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
-                text, accelerator, text, smallIcon, action);
+                name, accelerator, name, smallIcon, action);
     }
 
     public static Action newAction(
-            String text,
+            String name,
             @Nullable KeyStroke accelerator,
             @Nullable String description,
             Consumer<ActionEvent> action) {
         return ActionWithEventHandler.newAction(
-                text, accelerator, description, null, action);
+                name, accelerator, description, null, action);
     }
 
 }

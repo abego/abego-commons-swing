@@ -39,13 +39,13 @@ final class ActionWithEventHandler extends AbstractAction {
     private final Consumer<ActionEvent> action;
 
     private ActionWithEventHandler(
-            String text,
+            String name,
             @Nullable KeyStroke accelerator,
             @Nullable String description,
             @Nullable Icon smallIcon,
             Consumer<ActionEvent> eventHandler) {
 
-        super(text, null);
+        super(name, null);
         this.action = eventHandler;
         putValue(ACCELERATOR_KEY, accelerator);
         if (description != null) {
@@ -57,12 +57,12 @@ final class ActionWithEventHandler extends AbstractAction {
     }
 
     public static Action newAction(
-            String text,
+            String name,
             @Nullable KeyStroke accelerator,
             @Nullable String description,
             @Nullable ImageIcon smallIcon,
             Consumer<ActionEvent> action) {
-        return new ActionWithEventHandler(text, accelerator, description, smallIcon, action);
+        return new ActionWithEventHandler(name, accelerator, description, smallIcon, action);
     }
 
     @Override
