@@ -1,6 +1,21 @@
 # CHANGELOG
 
-## 0.12.0
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Breaking changes are written in **bold**.
+
+## [1.0.0] - 2023-10-09
+
+### Changed
+
+- updated dependencies, esp. use abego-commons version 1.0.0
+
+### Removed
+
+- `.idea` directory no longer included in Git repo.
+
+## [0.12.0] - 2023-03-19
 
 ### New
 
@@ -35,6 +50,6 @@
 
 - KeyStrokeUtil#acceleratorText: more readable text for Mac
 
-## 0.11.0
+## [0.11.0] - 2021-04-09
 
 - new release process
