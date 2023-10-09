@@ -45,13 +45,16 @@ class KeyStrokeUtilTest {
 
         assertEquals("Insert",
                 acceleratorText(KeyStroke.getKeyStroke("INSERT")));
+
         String controlDelete = acceleratorText(KeyStroke.getKeyStroke("control DELETE"));
-        assertTrue("Ctrl Delete".endsWith(controlDelete) ||
-                "⌃⌦".endsWith(controlDelete));
-        assertEquals("Alt+Shift X",
-                acceleratorText(KeyStroke.getKeyStroke("alt shift X")));
-        assertEquals("Alt+Shift X",
-                acceleratorText(KeyStroke.getKeyStroke("alt shift released X")));
+        assertTrue("Ctrl Delete".equals(controlDelete) || "⌃⌦".equals(controlDelete));
+
+        String altShiftX = acceleratorText(KeyStroke.getKeyStroke("alt shift X"));
+        assertTrue("Alt+Shift X".equals(altShiftX) || "⌥+⇧X".equals(altShiftX));
+
+        String altShiftReleasedX = acceleratorText(KeyStroke.getKeyStroke("alt shift released X"));
+        assertTrue("Alt+Shift X".equals(altShiftReleasedX) || "⌥+⇧X".equals(altShiftReleasedX));
+
         assertEquals("⌘C",
                 acceleratorText(KeyStroke.getKeyStroke(
                         KeyEvent.VK_C,
