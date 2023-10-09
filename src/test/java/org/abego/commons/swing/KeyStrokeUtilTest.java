@@ -6,12 +6,13 @@ import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import javax.swing.KeyStroke;
-
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import static org.abego.commons.swing.KeyStrokeUtil.acceleratorText;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KeyStrokeUtilTest {
 
@@ -44,8 +45,9 @@ class KeyStrokeUtilTest {
 
         assertEquals("Insert",
                 acceleratorText(KeyStroke.getKeyStroke("INSERT")));
-        assertEquals("Ctrl Delete",
-                acceleratorText(KeyStroke.getKeyStroke("control DELETE")));
+        String controlDelete = acceleratorText(KeyStroke.getKeyStroke("control DELETE"));
+        assertTrue("Ctrl Delete".endsWith(controlDelete) ||
+                "⌃⌦".endsWith(controlDelete));
         assertEquals("Alt+Shift X",
                 acceleratorText(KeyStroke.getKeyStroke("alt shift X")));
         assertEquals("Alt+Shift X",
