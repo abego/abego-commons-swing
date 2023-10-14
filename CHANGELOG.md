@@ -7,6 +7,16 @@ Breaking changes are written in **bold**.
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-10-14
+
+### Changed
+
+- updated dependencies.
+
+### Refactor 
+
+- remove unnecessary dependency
+
 ## [1.0.0] - 2023-10-09
 
 ### Changed
