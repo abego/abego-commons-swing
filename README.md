@@ -7,7 +7,7 @@ GUI development with Java Swing technology.
 
 ## Download
 
-__Download:__ https://github.com/abego/abego-commons-swing/releases/tag/v1.0.0
+__Download:__ https://github.com/abego/abego-commons-swing/releases/tag/v1.1.0
 
 __Maven:__
 
@@ -15,7 +15,7 @@ __Maven:__
 <dependency>
     <groupId>org.abego.commons</groupId>
     <artifactId>abego-commons-swing</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
